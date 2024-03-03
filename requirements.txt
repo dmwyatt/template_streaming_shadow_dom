@@ -3,9 +3,12 @@
 asgiref==3.7.2
     # via django
 django==5.0.2
+gunicorn==21.2.0
 jinja2==3.1.3
 markupsafe==2.1.5
     # via jinja2
+packaging==23.2
+    # via gunicorn
 sqlparse==0.4.4
     # via django
 tzdata==2024.1
