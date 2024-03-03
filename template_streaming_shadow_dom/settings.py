@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-h4klav@#40naqth724m72%i^@s04-(z0lawsay(u(@9x@s(=b-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "dj-streaming-shadow-dom.cottonash.com"]
 
 
 # Application definition
