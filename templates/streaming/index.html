@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Declarative Shadow DOM Streaming Example</title>
+</head>
+<body>
+<template shadowrootmode="open">
+
+  <ul>
+
+    {% for i in range(5) %}
+      <li>
+        <slot name="item-{{ i }}">Loading item {{ i + 1 }}...</slot>
+      </li>
+    {% endfor %}
+
+  </ul>
+</template>
+  
+
+{% for i in delayed_range %}
+  <span slot="item-{{ i }}">Content for item {{ i + 1 }}</span>
+{% endfor %}
+</body>
+</html>
