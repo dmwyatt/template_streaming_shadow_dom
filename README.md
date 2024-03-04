@@ -1,6 +1,8 @@
-# Async-ish streaming HTML with Django
+# Streaming HTML for Asynchronous Rendering
 
 ***No JavaScript required***
+
+**[Demo site](https://dj-streaming-shadow-dom.cottonash.com/)**.
 
 ![loading content](./loading.gif)
 
@@ -97,3 +99,7 @@ Django and Django sends it to the client in the same connection the rest of the 
 
 ## Improvements
 If you have any ideas for improvements either to the code or to the documentation, please open an issue or a pull request.
+
+
+## Inspiration
+I first saw this technique described by [Chris Haynes on his blog here](https://lamplightdev.com/blog/2024/01/10/streaming-html-out-of-order-without-javascript/).
