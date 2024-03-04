@@ -94,7 +94,16 @@ Django and Django sends it to the client in the same connection the rest of the 
 
 
 ## Gotchas
-* **Reverse proxies may buffer responses**. For example, on the demo server, I had to add `proxy_buffering off;` to the nginx config for the `/` location block. Another solution is to have Django send the `X-Accel-Buffering: no` header.
+* **Reverse proxies may buffer responses**. This means that the reverse proxy just waits for all of the content from Django before sending it to the client which completely negates the purpose of this technique. For example, on the demo server, I 
+  had to add 
+  `proxy_buffering off;
+  ` to the nginx config for 
+  the 
+  `/` location block. 
+  Another 
+  solution is to have 
+  Django send the 
+  `X-Accel-Buffering: no` header.
 * **Browser support**. I've tried it on Edge, Chrome, and Firefox. I've been told it works in Safari. These are all evergreen browsers that auto-update. I don't know about other browsers. [Here's caniuse](https://caniuse.com/declarative-shadow-dom) for the Declarative Shadow DOM.
 
 ## Improvements
