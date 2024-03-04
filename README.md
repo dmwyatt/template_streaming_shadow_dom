@@ -18,6 +18,20 @@ This is useful for when your view has to do some things that might take a while,
 sending preliminary HTML along with JavaScript that will fetch the rest of the data and use that data to build HTML to insert into the page. This repo demonstrates an alternative method.
 
 ## How it works
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant B as Browser
+    participant S as Server
+    U->>B: Loads page
+    B->>S: Requests page
+    S->>B: Begins sending HTML
+    Note over S,B: Sends Declarative Shadow Root early
+    S->>B: Continues sending HTML
+    Note over S,B: Sends Shadow DOM with slow content last
+    B->>B: Renders page incrementally
+```
 1. User loads the page
 2. The server begins composing the HTML, and crucially, begins sending the HTML from the top *as its ready*. It does *NOT* render the whole template and then send it all at once.
 3. "Higher up" in the HTML is a *Declarative Shadow Root* which is super fast and easy for the template engine to render. This is a placeholder (for example, the "loading item..." text in the above animation.)
