@@ -53,7 +53,7 @@ async for chunk in template.generate_async(delayed_range=delayed_range):
 
 Here the template engine just starts giving us chunks of the rendered template.  
 
-`content_generator` is a generator function which yields chunks. We then the iterator it creates to Django's `StreamingHttpResponse` in `shadow_dom_streaming_example` which will send each chunk as it becomes available:
+`content_generator` is a generator function which yields chunks. We then pass the iterator it creates to Django's `StreamingHttpResponse` in `shadow_dom_streaming_example` which will send each chunk as it becomes available:
 
 ```python
 return StreamingHttpResponse(content_generator())
