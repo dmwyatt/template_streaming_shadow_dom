@@ -39,4 +39,9 @@ def content_generator():
 
 
 def shadow_dom_streaming_example(request):
+    # Note that if you have nginx in front of your Django server, you may need to
+    # add `proxy_buffering off;` either globally or for specific location blocks.
+    #
+    # Another option is to set the header `X-Accel-Buffering` header to `no` in your
+    # view...maybe using a custom StreamingHttpResponse subclass or a middleware.
     return StreamingHttpResponse(content_generator())
