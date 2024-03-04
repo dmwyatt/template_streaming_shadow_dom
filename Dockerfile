@@ -22,4 +22,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 EXPOSE 8000
 
 # gunicorn
-CMD ["gunicorn", "template_streaming_shadow_dom.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", \
+     "template_streaming_shadow_dom.wsgi:application", \
+     "--bind", "0.0.0.0:8000", \
+     "-k", "uvicorn.workers.UvicornWorker"]
