@@ -19,7 +19,7 @@
 </template>
 
 
-{% for i in delayed_range %}
+{% for i in delayed_range(5, 1) %}
   <span slot="item-{{ i }}">Content for item {{ i + 1 }}</span>
 {% endfor %}
 </body>
