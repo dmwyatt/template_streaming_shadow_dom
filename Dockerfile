@@ -23,6 +23,8 @@ EXPOSE 8000
 
 # gunicorn
 CMD ["gunicorn", \
-     "template_streaming_shadow_dom.wsgi:application", \
-     "--bind", "0.0.0.0:8000", \
-     "-k", "uvicorn.workers.UvicornWorker"]
+     "template_streaming_shadow_dom.asgi:application", \
+     "--workers 4", \
+     "--worker-class", "uvicorn.workers.UvicornWorker", \
+     "--bind", "0.0.0.0:8000" \
+ ]
