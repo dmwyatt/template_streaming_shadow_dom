@@ -7,6 +7,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
 async def delayed_range(n: int, delay: float):
+    """Simulates some slow operations."""
     indices = list(range(n))
     random.shuffle(indices)
     for i in indices:
@@ -24,8 +25,13 @@ async def content_generator():
         enable_async=True,
     )
 
-    # Load and render the template, passing the generator as a context variable
     template = env.get_template("streaming/index.html")
+    # Render the template in chunks, passing the generator as a context variable In
+    # an ideal world we'd use `template.stream_async` but that doesn't exist. The
+    # difference between `generate` and `stream` is that `stream` returns a type
+    # that, for network efficiency, buffers up a configurable number of "items" so
+    # we're not yielding super tiny strings. How important this is in practice is
+    # unknown.
     async for chunk in template.generate_async(delayed_range=delayed_range):
         yield chunk
 
