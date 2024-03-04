@@ -7,19 +7,34 @@
 <body>
 <template shadowrootmode="open">
 
-  <ul>
+  <h2>Declarative Shadow DOM Streaming</h2>
+  <strong>No Javascript Required</strong>
+  <p>
+    This example demonstrates how to use Django's StreamingHttpResponse along with
+    the declarative Shadow DOM to stream content to the client.
+  </p>
 
+  {#  Hold a spot open for content that the server doesn't yet have ready. #}
+  <ul>
     {% for i in range(5) %}
       <li>
         <slot name="item-{{ i }}">Loading item {{ i + 1 }}...</slot>
       </li>
     {% endfor %}
-
   </ul>
+
+  <p>
+    The key part is that the content that is at the end of the template gets inserted
+    higher up in the document as it is streamed to the client. This allows the server to
+    send content to the client as it is generated, rather than waiting for the entire
+    response to be generated before sending it to the client.
+  </p>
+
 </template>
 
 
-{% for i in delayed_range(5, 1) %}
+{# Server sends this stuff when its ready and the browser inserts it above. #}
+{% for i in delayed_range(5, 0.7) %}
   <span slot="item-{{ i }}">Content for item {{ i + 1 }}</span>
 {% endfor %}
 </body>
