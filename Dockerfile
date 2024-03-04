@@ -3,15 +3,15 @@ FROM python:3.11-slim-bookworm
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+
+# for uv
 ENV VIRTUAL_ENV /usr/local/
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends curl
 
-# Set work directory
 WORKDIR /code
 
-# Copy the current directory contents into the container at /code/
 COPY . /code/
 
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
@@ -21,7 +21,6 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 
 EXPOSE 8000
 
-# gunicorn
 CMD ["gunicorn", \
      "template_streaming_shadow_dom.asgi:application", \
      "--workers 4", \
